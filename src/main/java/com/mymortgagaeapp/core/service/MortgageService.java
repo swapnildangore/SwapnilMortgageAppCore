@@ -8,4 +8,9 @@ public interface MortgageService {
 
 	List<MortgageApplication> getAllApplications();
 	
+	MortgageApplication getApplication(String id);
+	
+	MortgageApplication createApplication(MortgageApplication app);
+	
+	MortgageApplication updateApplication(MortgageApplication app,String id);
 }

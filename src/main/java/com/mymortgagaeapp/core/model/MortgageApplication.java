@@ -3,7 +3,10 @@
  */
 package com.mymortgagaeapp.core.model;
 
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mymortgagaeapp.core.validation.OfferDate;
 
 /**
  * @author Swapnil Dangore
@@ -11,12 +14,21 @@ import java.util.Date;
  */
 public class MortgageApplication {
 
+	@NotNull
 	String mortgageId;
+	@NotNull
 	String version;
+	@NotNull
 	String offerId;
+	@NotNull
 	String productId;
-	Date offerDate;
-	Date createdDate;
+	@NotNull
+	@JsonFormat(pattern="dd/MM/yyyy")
+	@OfferDate
+	String offerDate;
+	@NotNull
+	@JsonFormat(pattern="dd/MM/yyyy")	
+	String createdDate;
 	boolean offerExpired;
 	/**
 	 * @return the mortgageId
@@ -69,25 +81,25 @@ public class MortgageApplication {
 	/**
 	 * @return the offerDate
 	 */
-	public Date getOfferDate() {
+	public String getOfferDate() {
 		return offerDate;
 	}
 	/**
 	 * @param offerDate the offerDate to set
 	 */
-	public void setOfferDate(Date offerDate) {
+	public void setOfferDate(String offerDate) {
 		this.offerDate = offerDate;
 	}
 	/**
 	 * @return the createdDate
 	 */
-	public Date getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 	/**
 	 * @param createdDate the createdDate to set
 	 */
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 	/**
@@ -102,4 +114,11 @@ public class MortgageApplication {
 	public void setOfferExpired(boolean offerExpired) {
 		this.offerExpired = offerExpired;
 	}
+	@Override
+	public String toString() {
+		return "MortgageApplication [mortgageId=" + mortgageId + ", version=" + version + ", offerId=" + offerId
+				+ ", productId=" + productId + ", offerDate=" + offerDate + ", createdDate=" + createdDate
+				+ ", offerExpired=" + offerExpired + "]";
+	}
+
 }
