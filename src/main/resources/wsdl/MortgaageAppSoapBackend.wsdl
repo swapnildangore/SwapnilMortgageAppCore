@@ -1,0 +1,164 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://mymortgageapp.com/mortgageApplications"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://mymortgageapp.com/mortgageApplications"
+	targetNamespace="http://mymortgageapp.com/mortgageApplications">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified"
+			targetNamespace="http://mymortgageapp.com/mortgageApplications">
+			<xs:element name="GetAllApplicationsRequest">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAllApplicationsResponse">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element minOccurs="0" name="mortgageApplication"
+							type="tns:MortgageApplication" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getApplicationRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="mortgageId" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getApplicationResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="mortgageApplication"
+							type="tns:MortgageApplication" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrUpdateApplicationRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="mortgageApplication"
+							type="tns:MortgageApplication" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrUpdateApplicationResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="mortgageApplication"
+							type="tns:MortgageApplication" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="MortgageApplication">
+				<xs:sequence>
+					<xs:element name="mortgageId" type="xs:string" />
+					<xs:element name="version" type="xs:string" />
+					<xs:element name="offerId" type="xs:string" />
+					<xs:element name="productId" type="xs:string" />
+					<xs:element name="offerDate" type="xs:string" />
+					<xs:element name="createdDate" type="xs:string" />
+					<xs:element name="offerExpired" type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getApplicationRequest">
+		<wsdl:part element="tns:getApplicationRequest"
+			name="getApplicationRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getApplicationResponse">
+		<wsdl:part element="tns:getApplicationResponse"
+			name="getApplicationResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="CreateOrUpdateApplicationResponse">
+		<wsdl:part element="tns:CreateOrUpdateApplicationResponse"
+			name="CreateOrUpdateApplicationResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="CreateOrUpdateApplicationRequest">
+		<wsdl:part element="tns:CreateOrUpdateApplicationRequest"
+			name="CreateOrUpdateApplicationRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetAllApplicationsRequest">
+		<wsdl:part element="tns:GetAllApplicationsRequest"
+			name="GetAllApplicationsRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetAllApplicationsResponse">
+		<wsdl:part element="tns:GetAllApplicationsResponse"
+			name="GetAllApplicationsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="MortgageAppPort">
+		<wsdl:operation name="getApplication">
+			<wsdl:input message="tns:getApplicationRequest"
+				name="getApplicationRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getApplicationResponse"
+				name="getApplicationResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrUpdateApplication">
+			<wsdl:input message="tns:CreateOrUpdateApplicationRequest"
+				name="CreateOrUpdateApplicationRequest">
+			</wsdl:input>
+			<wsdl:output
+				message="tns:CreateOrUpdateApplicationResponse"
+				name="CreateOrUpdateApplicationResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetAllApplications">
+			<wsdl:input message="tns:GetAllApplicationsRequest"
+				name="GetAllApplicationsRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:GetAllApplicationsResponse"
+				name="GetAllApplicationsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MortgageAppPortSoap11"
+		type="tns:MortgageAppPort">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getApplication">
+			<soap:operation soapAction="" />
+			<wsdl:input name="getApplicationRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getApplicationResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrUpdateApplication">
+			<soap:operation soapAction="" />
+			<wsdl:input name="CreateOrUpdateApplicationRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreateOrUpdateApplicationResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetAllApplications">
+			<soap:operation soapAction="" />
+			<wsdl:input name="GetAllApplicationsRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetAllApplicationsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MortgageAppPortService">
+		<wsdl:port binding="tns:MortgageAppPortSoap11"
+			name="MortgageAppPortSoap11">
+			<soap:address
+				location="https://localhost:8443/MortgageSoapAPI/mortgageApplication" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
